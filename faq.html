@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ - DuniaKopi</title>
+    <title>FAQ - Pertanyaan Yang Sering Diajukan | DuniaKopi</title>
+    <meta name="description" content="Temukan jawaban untuk pertanyaan umum tentang produk kopi, pengiriman, pembayaran, dan layanan DuniaKopi. Panduan lengkap untuk pelanggan.">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,32 +22,70 @@
         .nav-menu { display: flex; gap: 35px; list-style: none; align-items: center; }
         .nav-menu a { color: var(--text-medium); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.3s; }
         .nav-menu a:hover { color: var(--primary-brown); }
+        .nav-cta { background: var(--primary-brown); color: var(--cream) !important; padding: 10px 25px; border-radius: 50px; transition: all 0.3s; }
+        .nav-cta:hover { background: var(--dark-brown); transform: translateY(-2px); }
+        
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.8rem; color: var(--text-medium); cursor: pointer; }
+        .mobile-menu { display: none; position: fixed; top: 80px; left: 0; right: 0; background: rgba(245, 237, 228, 0.98); backdrop-filter: blur(10px); padding: 20px; border-bottom: 2px solid var(--light-brown); box-shadow: 0 10px 30px rgba(61, 41, 23, 0.2); z-index: 99; }
+        .mobile-menu.active { display: block; animation: slideDown 0.3s ease-out; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 15px; }
+        .mobile-menu a { color: var(--text-medium); text-decoration: none; font-weight: 500; display: block; padding: 10px; border-radius: 8px; }
+        
         .hero-faq { padding: 150px 50px 80px; text-align: center; background: linear-gradient(135deg, var(--cream) 0%, var(--light-brown) 100%); }
         .hero-faq h1 { font-family: 'Crimson Text', serif; font-size: 4rem; color: var(--text-dark); margin-bottom: 20px; font-style: italic; }
-        .hero-faq p { font-size: 1.2rem; color: var(--text-medium); max-width: 600px; margin: 0 auto; }
+        .hero-faq p { font-size: 1.2rem; color: var(--text-medium); max-width: 600px; margin: 0 auto 30px; }
+        
+        .search-box { max-width: 600px; margin: 0 auto; position: relative; }
+        .search-box input { width: 100%; padding: 15px 50px 15px 20px; border: 2px solid var(--light-brown); border-radius: 50px; font-size: 1rem; background: #fff; }
+        .search-box input:focus { outline: none; border-color: var(--primary-brown); }
+        .search-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 1.3rem; color: var(--text-medium); }
+        
         .faq-container { max-width: 900px; margin: 0 auto; padding: 80px 50px; }
         .faq-category { margin-bottom: 50px; }
-        .faq-category h2 { font-family: 'Crimson Text', serif; font-size: 2.5rem; color: var(--primary-brown); margin-bottom: 30px; }
+        .faq-category h2 { font-family: 'Crimson Text', serif; font-size: 2.5rem; color: var(--primary-brown); margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
         .faq-item { background: #fff; border-radius: 15px; overflow: hidden; margin-bottom: 15px; border: 3px solid #e8d5c4; transition: all 0.3s; }
         .faq-item:hover { border-color: var(--light-brown); }
+        .faq-item.hidden { display: none; }
         .faq-question { width: 100%; background: none; border: none; padding: 25px 30px; text-align: left; font-size: 1.1rem; font-weight: 500; color: var(--text-dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s; }
         .faq-question:hover { background: rgba(212, 165, 116, 0.1); }
-        .faq-icon { font-size: 1.5rem; transition: transform 0.3s; color: var(--primary-brown); font-weight: 700; }
+        .faq-icon { font-size: 1.5rem; transition: transform 0.3s; color: var(--primary-brown); font-weight: 700; min-width: 30px; text-align: center; }
         .faq-item.active .faq-icon { transform: rotate(45deg); }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
         .faq-item.active .faq-answer { max-height: 500px; }
         .faq-answer p { padding: 0 30px 25px; color: var(--text-medium); line-height: 1.8; }
+        .faq-answer ul { padding: 0 30px 25px 60px; color: var(--text-medium); line-height: 1.8; }
+        .faq-answer li { margin-bottom: 8px; }
+        
+        .quick-links { background: rgba(139, 90, 43, 0.05); padding: 30px; border-radius: 15px; margin-bottom: 50px; }
+        .quick-links h3 { font-family: 'Crimson Text', serif; font-size: 1.5rem; color: var(--text-dark); margin-bottom: 20px; }
+        .quick-links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .quick-link-btn { padding: 12px 20px; background: #fff; border: 2px solid var(--light-brown); border-radius: 10px; text-align: center; text-decoration: none; color: var(--text-dark); font-weight: 500; transition: all 0.3s; display: block; }
+        .quick-link-btn:hover { background: var(--primary-brown); color: var(--cream); border-color: var(--primary-brown); }
+        
+        .no-results { display: none; text-align: center; padding: 40px; color: var(--text-medium); }
+        .no-results.show { display: block; }
+        
         .cta-section { background: var(--primary-brown); color: var(--cream); padding: 60px 50px; text-align: center; margin: 80px 0 0; }
         .cta-section h2 { font-family: 'Crimson Text', serif; font-size: 2.5rem; margin-bottom: 20px; }
         .cta-section p { font-size: 1.1rem; margin-bottom: 30px; }
         .btn-contact { display: inline-block; padding: 15px 40px; background: var(--cream); color: var(--primary-brown); text-decoration: none; border-radius: 50px; font-weight: 500; transition: all 0.3s; }
         .btn-contact:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        
         footer { background: var(--text-dark); color: #e8d5c4; padding: 60px 50px 30px; text-align: center; }
         footer a { color: var(--light-brown); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); cursor: pointer; z-index: 1000; transition: all 0.3s; text-decoration: none; }
+        .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6); }
+        
         @media (max-width: 768px) {
             .nav-menu { display: none; }
+            .mobile-menu-btn { display: block; }
             .hero-faq h1 { font-size: 2.5rem; }
             .faq-container { padding: 60px 30px; }
+            .faq-question { font-size: 1rem; padding: 20px 25px; }
+            .quick-links-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -58,171 +97,455 @@
             <li><a href="index.html#story">Cerita Kami</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a href="contact.html">Kontak</a></li>
+            <li><a href="#" class="nav-cta" onclick="goToMainWebsite()">🛒 Belanja Sekarang</a></li>
         </ul>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html#products">Produk</a></li>
+            <li><a href="index.html#story">Cerita Kami</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Kontak</a></li>
+            <li><a href="#" onclick="goToMainWebsite()">🛒 Belanja Sekarang</a></li>
+        </ul>
+    </div>
 
     <section class="hero-faq">
         <h1>Pertanyaan Umum ❓</h1>
         <p>Temukan jawaban untuk pertanyaan yang sering diajukan tentang produk dan layanan kami</p>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Cari pertanyaan..." onkeyup="searchFAQ()">
+            <span class="search-icon">🔍</span>
+        </div>
     </section>
 
     <div class="faq-container">
-        <div class="faq-category">
+        <div class="quick-links">
+            <h3>Topik Populer</h3>
+            <div class="quick-links-grid">
+                <a href="#pemesanan" class="quick-link-btn">🛒 Pemesanan</a>
+                <a href="#pengiriman" class="quick-link-btn">📦 Pengiriman</a>
+                <a href="#produk" class="quick-link-btn">☕ Produk</a>
+                <a href="#pengembalian" class="quick-link-btn">💳 Pengembalian</a>
+                <a href="#program" class="quick-link-btn">🎁 Program</a>
+            </div>
+        </div>
+
+        <div class="no-results" id="noResults">
+            <h3>Tidak ada hasil ditemukan</h3>
+            <p>Coba kata kunci lain atau <a href="contact.html" style="color: var(--primary-brown); font-weight: 600;">hubungi kami</a> untuk bantuan</p>
+        </div>
+
+        <div class="faq-category" id="pemesanan">
             <h2>🛒 Pemesanan & Pembayaran</h2>
             
-            <div class="faq-item">
+            <div class="faq-item" data-keywords="pesan order beli cara pemesanan">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     <span>Bagaimana cara memesan produk DuniaKopi?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Anda dapat memesan melalui website kami dengan menambahkan produk ke keranjang, lalu melanjutkan ke checkout. Kami juga menerima pesanan melalui WhatsApp di +62 812-3456-7890. Tim kami akan membantu Anda menyelesaikan pesanan dengan cepat dan mudah.</p>
+                    <p>Anda dapat memesan melalui beberapa cara:</p>
+                    <ul>
+                        <li><strong>Website utama:</strong> Kunjungi shop.duniakopi.id untuk belanja online</li>
+                        <li><strong>WhatsApp:</strong> Hubungi +62 812-3456-7890 untuk konsultasi dan pemesanan</li>
+                        <li><strong>Instagram DM:</strong> Kirim pesan ke @duniakopi</li>
+                    </ul>
+                    <p>Tim kami akan membantu Anda menyelesaikan pesanan dengan cepat dan mudah.</p>
                 </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item" data-keywords="bayar pembayaran metode transfer kartu kredit ewallet">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     <span>Metode pembayaran apa saja yang tersedia?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Kami menerima transfer bank (BCA, Mandiri, BNI, BRI), e-wallet (GoPay, OVO, DANA, ShopeePay), dan kartu kredit/debit. Semua transaksi aman dan terenkripsi.</p>
+                    <p>Kami menerima berbagai metode pembayaran untuk kemudahan Anda:</p>
+                    <ul>
+                        <li><strong>Transfer Bank:</strong> BCA, Mandiri, BNI, BRI</li>
+                        <li><strong>E-Wallet:</strong> GoPay, OVO, DANA, ShopeePay</li>
+                        <li><strong>Kartu Kredit/Debit:</strong> Visa, Mastercard</li>
+                        <li><strong>QRIS:</strong> Scan untuk bayar</li>
+                    </ul>
+                    <p>Semua transaksi aman dan terenkripsi dengan sistem keamanan terbaik.</p>
                 </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item" data-keywords="minimum order minimal pembelian">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     <span>Apakah ada minimum order?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Tidak ada minimum order untuk pembelian biji kopi. Anda bisa membeli mulai dari 1 pack (250g). Untuk pembelian dalam jumlah besar (>10kg), kami menyediakan harga khusus.</p>
+                    <p>Tidak ada minimum order untuk pembelian biji kopi. Anda bisa membeli mulai dari 1 pack (250g). Untuk pembelian dalam jumlah besar (>10kg), kami menyediakan harga khusus dan konsultasi gratis untuk kebutuhan bisnis Anda.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-keywords="invoice faktur nota bukti pembayaran">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Apakah saya mendapat invoice atau bukti pembelian?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Ya, setiap pembelian akan mendapat invoice digital yang dikirim via email. Invoice mencakup detail pembelian, metode pembayaran, dan nomor resi pengiriman. Anda juga bisa request invoice fisik jika diperlukan untuk keperluan bisnis.</p>
                 </div>
             </div>
         </div>
 
-        <div class="faq-category">
+        <div class="faq-category" id="pengiriman">
             <h2>📦 Pengiriman & Pengantaran</h2>
             
-            <div class="faq-item">
+            <div class="faq-item" data-keywords="lama waktu pengiriman durasi sampai">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     <span>Berapa lama waktu pengiriman?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Untuk wilayah Jawa-Bali: 2-3 hari kerja. Luar Jawa-Bali: 3-5 hari kerja. Kami melakukan roasting fresh setiap pesanan untuk memastikan kopi sampai dalam kondisi terbaik. Pengiriman dilakukan setiap hari Senin-Jumat.</p>
+                    <p>Estimasi waktu pengiriman:</p>
+                    <ul>
+                        <li><strong>Jawa-Bali:</strong> 2-3 hari kerja</li>
+                        <li><strong>Sumatera:</strong> 3-4 hari kerja</li>
+                        <li><strong>Kalimantan & Sulawesi:</strong> 4-5 hari kerja</li>
+                        <li><strong>Papua & NTT/NTB:</strong> 5-7 hari kerja</li>
+                    </ul>
+                    <p>Kami melakukan roasting fresh setiap pesanan untuk memastikan kopi sampai dalam kondisi terbaik. Pengiriman dilakukan setiap hari Senin-Jumat.</p>
                 </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item" data-keywords="ongkir ongkos kirim gratis biaya pengiriman">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     <span>Apakah ada biaya pengiriman?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>GRATIS ongkir untuk pembelian minimal Rp 200.000 ke seluruh Indonesia. Untuk pembelian di bawah itu, biaya pengiriman akan dihitung otomatis saat checkout berdasarkan wilayah pengiriman Anda.</p>
+                    <p><strong>GRATIS ONGKIR</strong> untuk pembelian minimal Rp 200.000 ke seluruh Indonesia!</p>
+                    <p>Untuk pembelian di bawah itu, biaya pengiriman akan dihitung otomatis saat checkout berdasarkan wilayah pengiriman Anda. Kami bekerja sama dengan JNE, J&T, SiCepat, dan AnterAja untuk memberikan layanan terbaik.</p>
                 </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item" data-keywords="lacak tracking resi paket cek status">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     <span>Bagaimana cara melacak pesanan saya?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Setelah pesanan dikirim, Anda akan menerima nomor resi melalui email dan WhatsApp. Anda bisa melacak paket Anda secara real-time melalui website ekspedisi yang kami gunakan (JNE, J&T, SiCepat, atau AnterAja).</p>
+                    <p>Setelah pesanan dikirim, Anda akan menerima:</p>
+                    <ul>
+                        <li>Nomor resi via email dan WhatsApp</li>
+                        <li>Link tracking untuk cek status real-time</li>
+                        <li>Notifikasi update status pengiriman</li>
+                    </ul>
+                    <p>Anda bisa melacak paket Anda secara real-time melalui website ekspedisi yang kami gunakan atau langsung dari dashboard akun Anda.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-keywords="packaging kemasan packing bubble wrap">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Bagaimana produk dikemas untuk pengiriman?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Kami sangat serius dengan packaging! Biji kopi dikemas dalam:</p>
+                    <ul>
+                        <li>Kantong aluminium foil dengan valve untuk kesegaran maksimal</li>
+                        <li>Bubble wrap untuk perlindungan ekstra</li>
+                        <li>Box kardus tebal dan kuat</li>
+                        <li>Stiker "FRAGILE" untuk pengiriman aman</li>
+                    </ul>
+                    <p>Packaging kami ramah lingkungan dan dapat didaur ulang.</p>
                 </div>
             </div>
         </div>
 
-        <div class="faq-category">
+        <div class="faq-category" id="produk">
             <h2>☕ Produk & Kualitas</h2>
             
-            <div class="faq-item">
+            <div class="faq-item" data-keywords="simpan storage penyimpanan fresh segar awet">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     <span>Bagaimana cara menyimpan biji kopi agar tetap fresh?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Simpan biji kopi dalam wadah kedap udara di tempat yang sejuk, kering, dan terhindar dari cahaya langsung. Hindari menyimpan di kulkas karena dapat menyerap bau makanan lain. Biji kopi paling baik dikonsumsi dalam 2-4 minggu setelah roasting untuk rasa optimal.</p>
+                    <p>Tips menyimpan biji kopi:</p>
+                    <ul>
+                        <li>Simpan dalam wadah kedap udara</li>
+                        <li>Jauhkan dari cahaya langsung dan tempat lembab</li>
+                        <li>Suhu ruangan ideal (tidak di kulkas!)</li>
+                        <li>Hindari tempat dengan bau menyengat</li>
+                        <li>Konsumsi dalam 2-4 minggu setelah roasting untuk rasa optimal</li>
+                    </ul>
+                    <p>Pro tip: Beli sesuai kebutuhan konsumsi 2-3 minggu untuk kesegaran maksimal.</p>
                 </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item" data-keywords="bubuk grind giling grinding kopi">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     <span>Apakah tersedia dalam bentuk bubuk/grind?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Ya! Kami menyediakan layanan grinding GRATIS sesuai metode seduhan Anda (espresso, pour over, french press, moka pot, dll). Cukup beritahu kami saat memesan. Namun kami merekomendasikan membeli dalam bentuk whole beans untuk kesegaran maksimal.</p>
+                    <p>Ya! Kami menyediakan <strong>layanan grinding GRATIS</strong> sesuai metode seduhan Anda:</p>
+                    <ul>
+                        <li>Extra Fine - untuk Espresso & Moka Pot</li>
+                        <li>Fine - untuk Aeropress</li>
+                        <li>Medium - untuk Pour Over (V60, Chemex)</li>
+                        <li>Coarse - untuk French Press & Cold Brew</li>
+                    </ul>
+                    <p>Cukup beritahu kami saat memesan. Namun kami merekomendasikan membeli dalam bentuk whole beans untuk kesegaran maksimal dan grind sendiri sebelum seduh.</p>
                 </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item" data-keywords="organik organic natural pestisida kimia">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     <span>Apakah kopi DuniaKopi organik?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Ya, 100% organik! Semua kopi kami ditanam tanpa pestisida atau bahan kimia berbahaya. Kami bekerja langsung dengan petani yang menerapkan praktik pertanian berkelanjutan dan ramah lingkungan.</p>
+                    <p>Ya, <strong>100% organik</strong>! Semua kopi kami:</p>
+                    <ul>
+                        <li>Ditanam tanpa pestisida atau bahan kimia berbahaya</li>
+                        <li>Menggunakan pupuk alami</li>
+                        <li>Diproses secara natural dan tradisional</li>
+                        <li>Bersertifikat organik</li>
+                    </ul>
+                    <p>Kami bekerja langsung dengan petani yang menerapkan praktik pertanian berkelanjutan dan ramah lingkungan.</p>
                 </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item" data-keywords="arabika robusta beda perbedaan jenis">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     <span>Bagaimana perbedaan Arabika dan Robusta?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Arabika: Rasa lebih halus, kompleks, dengan keasaman yang seimbang. Cocok untuk pour over dan filter coffee. Robusta: Lebih strong, body tebal, kafein lebih tinggi. Cocok untuk espresso dan kopi susu. Kami punya kedua jenis untuk preferensi yang berbeda!</p>
+                    <p><strong>Arabika:</strong></p>
+                    <ul>
+                        <li>Rasa lebih halus dan kompleks</li>
+                        <li>Keasaman yang seimbang</li>
+                        <li>Kafein lebih rendah (1-1.5%)</li>
+                        <li>Cocok untuk pour over dan filter coffee</li>
+                        <li>Harga lebih premium</li>
+                    </ul>
+                    <p><strong>Robusta:</strong></p>
+                    <ul>
+                        <li>Rasa lebih strong dan bold</li>
+                        <li>Body lebih tebal</li>
+                        <li>Kafein lebih tinggi (2-2.7%)</li>
+                        <li>Cocok untuk espresso dan kopi susu</li>
+                        <li>Harga lebih terjangkau</li>
+                    </ul>
+                    <p>Kami punya kedua jenis untuk preferensi yang berbeda!</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-keywords="roast level panggang light medium dark">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Apa itu light, medium, dan dark roast?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p><strong>Light Roast:</strong> Warna cokelat muda, rasa original bean lebih terasa, keasaman tinggi, fruity notes jelas. Cocok untuk yang suka kopi asam.</p>
+                    <p><strong>Medium Roast:</strong> Balanced antara keasaman dan body, rasa lebih smooth, paling populer. Cocok untuk semua metode seduh.</p>
+                    <p><strong>Dark Roast:</strong> Warna gelap, rasa bold dan strong, keasaman rendah, caramelized notes. Cocok untuk espresso dan pecinta kopi pahit.</p>
                 </div>
             </div>
         </div>
 
-        <div class="faq-category">
+        <div class="faq-category" id="pengembalian">
             <h2>💳 Pengembalian & Garansi</h2>
             
-            <div class="faq-item">
+            <div class="faq-item" data-keywords="rusak cacat tidak sesuai salah kirim retur">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     <span>Bagaimana jika produk tidak sesuai atau rusak?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Kami menjamin kepuasan 100%! Jika ada masalah dengan produk (kemasan rusak, kualitas tidak sesuai, atau kesalahan pengiriman), hubungi kami dalam 7 hari setelah penerimaan. Kami akan melakukan penukaran atau refund penuh tanpa biaya tambahan.</p>
+                    <p>Kami menjamin <strong>kepuasan 100%</strong>! Jika ada masalah:</p>
+                    <ul>
+                        <li>Kemasan rusak atau bocor</li>
+                        <li>Kualitas tidak sesuai ekspektasi</li>
+                        <li>Kesalahan pengiriman produk</li>
+                        <li>Produk kadaluarsa atau tidak fresh</li>
+                    </ul>
+                    <p>Hubungi kami dalam <strong>7 hari</strong> setelah penerimaan dengan foto bukti. Kami akan melakukan penukaran atau refund penuh tanpa biaya tambahan. Anda tidak perlu mengirim barang kembali untuk kasus produk rusak.</p>
                 </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item" data-keywords="retur refund kembalikan uang tidak suka">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     <span>Apakah bisa retur jika tidak suka rasanya?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Untuk alasan preferensi rasa, mohon maaf kami tidak dapat menerima retur karena kopi sudah di-roast khusus untuk Anda. Namun, jika Anda tidak puas, kami bisa membantu merekomendasikan jenis kopi lain yang lebih sesuai dengan selera Anda untuk pembelian berikutnya.</p>
+                    <p>Untuk alasan preferensi rasa, mohon maaf kami tidak dapat menerima retur karena:</p>
+                    <ul>
+                        <li>Kopi sudah di-roast fresh khusus untuk Anda</li>
+                        <li>Kemasan sudah dibuka/digunakan</li>
+                        <li>Rasa adalah subjektif</li>
+                    </ul>
+                    <p>Namun, jika Anda tidak puas, kami dengan senang hati:</p>
+                    <ul>
+                        <li>Membantu merekomendasikan jenis kopi lain yang lebih sesuai</li>
+                        <li>Memberikan tips brewing yang tepat</li>
+                        <li>Memberikan discount voucher untuk pembelian berikutnya</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item" data-keywords="garansi jaminan kualitas quality">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Apa garansi kualitas yang diberikan?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Setiap pembelian dijamin dengan:</p>
+                    <ul>
+                        <li><strong>Freshness Guarantee:</strong> Roasted maksimal 7 hari sebelum pengiriman</li>
+                        <li><strong>Quality Assurance:</strong> Biji kopi 100% grade A, tanpa defect</li>
+                        <li><strong>Authenticity:</strong> Origin certificate untuk setiap batch</li>
+                        <li><strong>Money Back:</strong> Refund 100% jika produk cacat atau tidak sesuai</li>
+                    </ul>
+                    <p>Kepuasan Anda adalah prioritas kami!</p>
                 </div>
             </div>
         </div>
 
-        <div class="faq-category">
+        <div class="faq-category" id="program">
             <h2>🎁 Program & Loyalitas</h2>
             
-            <div class="faq-item">
+            <div class="faq-item" data-keywords="loyalty point poin diskon promo voucher">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     <span>Apakah ada program loyalty atau discount?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Ya! Setiap pembelian Anda mendapat poin yang bisa ditukar dengan diskon atau produk gratis. Subscribe newsletter kami untuk mendapat update promo spesial, early access ke produk baru, dan diskon eksklusif. Member loyal juga mendapat birthday voucher!</p>
+                    <p>Ya! Kami punya <strong>DuniaKopi Rewards</strong>:</p>
+                    <ul>
+                        <li>Setiap pembelian dapat poin (1% dari nilai transaksi)</li>
+                        <li>Poin bisa ditukar dengan diskon atau produk gratis</li>
+                        <li>Member loyalty dapat early access produk baru</li>
+                        <li>Birthday voucher special 15% off</li>
+                        <li>Referral bonus: ajak teman dapat Rp 25.000</li>
+                    </ul>
+                    <p>Subscribe newsletter untuk update promo eksklusif dan flash sale!</p>
                 </div>
             </div>
 
-            <div class="faq-item">
+            <div class="faq-item" data-keywords="subscribe subscription berlangganan bulanan coffee box">
                 <button class="faq-question" onclick="toggleFAQ(this)">
                     <span>Bagaimana cara subscribe box berlangganan?</span>
                     <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Subscription box kami sedang dalam pengembangan dan akan segera hadir! Dengan berlangganan, Anda akan mendapat kopi fresh setiap bulan dengan harga spesial dan akses ke single origin eksklusif. Daftar waitlist melalui newsletter untuk notifikasi peluncuran.</p>
+                    <p><strong>Coffee Subscription Box</strong> kami sedang dalam pengembangan dan akan segera hadir!</p>
+                    <p>Benefit yang akan Anda dapatkan:</p>
+                    <ul>
+                        <li>Kopi fresh setiap bulan otomatis dikirim</li>
+                        <li>Harga lebih murah 15-20% dari harga normal</li>
+                        <li>Akses eksklusif ke single origin limited edition</li>
+                        <li>Surprise gift setiap 3 bulan</li>
+                        <li>Flexible: bisa pause atau skip bulan tertentu</li>
+                    </ul>
+                    <p>Daftar waitlist melalui newsletter untuk mendapat notifikasi peluncuran dan early bird discount 30%!</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-keywords="reseller dropship bisnis grosir wholesale">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Apakah ada program reseller atau dropship?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Ya! Kami welcome kerjasama bisnis:</p>
+                    <p><strong>Program Reseller:</strong></p>
+                    <ul>
+                        <li>Harga khusus untuk pembelian min 10kg/bulan</li>
+                        <li>Discount 20-30% tergantung volume</li>
+                        <li>Support marketing materials</li>
+                        <li>Training brewing dan product knowledge</li>
+                    </ul>
+                    <p><strong>Program Dropship:</strong></p>
+                    <ul>
+                        <li>Tanpa modal, kami yang handle packing & kirim</li>
+                        <li>Profit margin fleksibel</li>
+                        <li>Custom label dengan brand Anda (min qty 50 packs)</li>
+                    </ul>
+                    <p>Hubungi kami via WhatsApp untuk diskusi lebih lanjut!</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-keywords="kafe cafe coffee shop kedai business b2b">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Apakah melayani pembelian untuk cafe atau coffee shop?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Tentu! Kami punya <strong>B2B Program</strong> untuk bisnis F&B:</p>
+                    <ul>
+                        <li>Harga khusus untuk pembelian bulk (min 25kg)</li>
+                        <li>Custom roast profile sesuai kebutuhan</li>
+                        <li>Konsistensi kualitas terjamin setiap batch</li>
+                        <li>Delivery schedule tetap</li>
+                        <li>Training barista gratis</li>
+                        <li>Coffee tasting session</li>
+                        <li>Terms pembayaran fleksibel untuk partner</li>
+                    </ul>
+                    <p>Sudah 50+ cafe mempercayai kami sebagai supplier kopi mereka. Hubungi tim B2B kami untuk penawaran khusus!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-category">
+            <h2>🌟 Lainnya</h2>
+            
+            <div class="faq-item" data-keywords="halal sertifikat certificate certification">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Apakah produk DuniaKopi halal?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Ya, semua produk kami <strong>100% Halal</strong>. Kami sedang dalam proses sertifikasi halal MUI untuk dokumentasi resmi. Proses produksi kami tidak menggunakan bahan tambahan apapun, murni biji kopi organik yang dipanggang.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-keywords="kadaluarsa expired expire tanggal">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Berapa lama masa simpan biji kopi?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Biji kopi whole bean:</p>
+                    <ul>
+                        <li><strong>Best before:</strong> 2-4 minggu setelah roast date (untuk rasa optimal)</li>
+                        <li><strong>Expired:</strong> 6 bulan setelah roast date (dalam kemasan tertutup)</li>
+                    </ul>
+                    <p>Kopi bubuk/ground:</p>
+                    <ul>
+                        <li><strong>Best before:</strong> 1-2 minggu</li>
+                        <li><strong>Expired:</strong> 3 bulan</li>
+                    </ul>
+                    <p>Tip: Untuk rasa terbaik, beli sesuai konsumsi 2-3 minggu dan simpan dengan benar!</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-keywords="gift hamper hadiah kado parcel">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Apakah bisa untuk hampers atau gift?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Tentu! Kami punya <strong>Coffee Gift Set</strong>:</p>
+                    <ul>
+                        <li>Gift box premium dengan packaging menarik</li>
+                        <li>Pilihan paket: Small (2 packs), Medium (4 packs), Large (6 packs)</li>
+                        <li>Bisa custom kartu ucapan</li>
+                        <li>Kirim langsung ke alamat penerima</li>
+                        <li>Perfect untuk hadiah ulang tahun, appreciation, atau corporate gift</li>
+                    </ul>
+                    <p>Hubungi kami untuk custom gift box sesuai budget dan kebutuhan Anda!</p>
                 </div>
             </div>
         </div>
@@ -235,10 +558,25 @@
     </section>
 
     <footer>
-        <p>© 2024 DuniaKopi • <a href="index.html">Kembali ke Beranda</a></p>
+        <p>© 2024 DuniaKopi • <a href="index.html">Kembali ke Beranda</a> • <a href="contact.html">Kontak</a></p>
     </footer>
 
+    <a href="https://wa.me/6281234567890" class="whatsapp-float" target="_blank" title="Chat WhatsApp">💬</a>
+
     <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
         function toggleFAQ(button) {
             const item = button.parentElement;
             const isActive = item.classList.contains('active');
@@ -250,6 +588,56 @@
             if (!isActive) {
                 item.classList.add('active');
             }
+        }
+
+        function searchFAQ() {
+            const searchInput = document.getElementById('searchInput');
+            const filter = searchInput.value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            const noResults = document.getElementById('noResults');
+            let hasResults = false;
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
+                const keywords = item.getAttribute('data-keywords').toLowerCase();
+                
+                if (question.includes(filter) || answer.includes(filter) || keywords.includes(filter)) {
+                    item.classList.remove('hidden');
+                    hasResults = true;
+                } else {
+                    item.classList.add('hidden');
+                    item.classList.remove('active');
+                }
+            });
+
+            if (filter === '') {
+                hasResults = true;
+                faqItems.forEach(item => item.classList.remove('hidden'));
+            }
+
+            if (hasResults) {
+                noResults.classList.remove('show');
+            } else {
+                noResults.classList.add('show');
+            }
+        }
+
+        // Smooth scroll for quick links
+        document.querySelectorAll('.quick-link-btn').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        function goToMainWebsite() {
+            const mainWebsiteURL = 'https://shop.duniakopi.id';
+            window.location.href = mainWebsiteURL;
         }
     </script>
 </body>

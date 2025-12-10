@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DuniaKopi - Cerita Kopi dari Nusantara</title>
+    <title>DuniaKopi - Cerita Kopi dari Nusantara | Kopi Organik Premium</title>
+    <meta name="description" content="Nikmati kopi organik premium dari pegunungan Indonesia. Biji kopi pilihan langsung dari petani lokal. Fair trade, freshly roasted, gratis ongkir.">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -18,23 +19,26 @@
         body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); line-height: 1.6; }
         html { scroll-behavior: smooth; }
         body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 90, 43, 0.03) 2px, rgba(139, 90, 43, 0.03) 4px); pointer-events: none; z-index: 9999; }
+        
         nav { position: fixed; top: 0; width: 100%; padding: 25px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 100; background: rgba(245, 237, 228, 0.95); backdrop-filter: blur(10px); border-bottom: 2px solid var(--light-brown); box-shadow: 0 2px 20px rgba(61, 41, 23, 0.1); transition: all 0.3s; }
         nav.scrolled { padding: 15px 50px; box-shadow: 0 4px 30px rgba(61, 41, 23, 0.15); }
-        .nav-logo { font-family: 'Crimson Text', serif; font-size: 2rem; font-weight: 600; color: var(--primary-brown); font-style: italic; cursor: pointer; transition: transform 0.3s; }
+        .nav-logo { font-family: 'Crimson Text', serif; font-size: 2rem; font-weight: 600; color: var(--primary-brown); font-style: italic; cursor: pointer; transition: transform 0.3s; text-decoration: none; }
         .nav-menu { display: flex; gap: 35px; list-style: none; align-items: center; }
         .nav-menu a { color: var(--text-medium); text-decoration: none; font-size: 0.95rem; font-weight: 500; position: relative; transition: color 0.3s; }
         .nav-menu a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: #c68642; transition: width 0.3s; }
         .nav-menu a:hover { color: var(--primary-brown); }
         .nav-menu a:hover::after { width: 100%; }
         .nav-cta { background: var(--primary-brown); color: var(--cream) !important; padding: 10px 25px; border-radius: 50px; transition: all 0.3s; display: flex; align-items: center; gap: 8px; }
+        .nav-cta:hover { background: var(--dark-brown); transform: translateY(-2px); }
         .nav-cta::after { display: none; }
-        .cart-badge { display: none; background: #e74c3c; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 0.75rem; align-items: center; justify-content: center; font-weight: 700; }
+        
         .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.8rem; color: var(--text-medium); cursor: pointer; }
         .mobile-menu { display: none; position: fixed; top: 80px; left: 0; right: 0; background: rgba(245, 237, 228, 0.98); backdrop-filter: blur(10px); padding: 20px; border-bottom: 2px solid var(--light-brown); box-shadow: 0 10px 30px rgba(61, 41, 23, 0.2); z-index: 99; }
         .mobile-menu.active { display: block; animation: slideDown 0.3s ease-out; }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
         .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 15px; }
         .mobile-menu a { color: var(--text-medium); text-decoration: none; font-weight: 500; display: block; padding: 10px; border-radius: 8px; transition: all 0.3s; }
+        
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 50px 80px; background: radial-gradient(circle at 80% 20%, rgba(212, 165, 116, 0.15) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(139, 90, 43, 0.1) 0%, transparent 50%), var(--cream); position: relative; overflow: hidden; }
         .hero::before { content: '☕'; position: absolute; font-size: 40rem; opacity: 0.03; right: -100px; top: 50%; transform: translateY(-50%) rotate(-15deg); pointer-events: none; }
         .hero-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -48,6 +52,7 @@
         .btn-primary:hover { background: var(--dark-brown); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139, 90, 43, 0.4); }
         .btn-secondary { background: transparent; color: var(--primary-brown); border-color: var(--primary-brown); }
         .btn-secondary:hover { background: var(--primary-brown); color: var(--cream); }
+        
         .hero-visual { position: relative; height: 500px; animation: fadeIn 1s ease-out 0.6s both; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .coffee-cup { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 350px; }
@@ -64,14 +69,21 @@
         .circle:nth-child(1) { width: 400px; height: 400px; top: 10%; right: -10%; animation: rotate-slow 30s linear infinite; }
         .circle:nth-child(2) { width: 250px; height: 250px; bottom: 5%; left: -5%; animation: rotate-slow 25s linear infinite reverse; }
         @keyframes rotate-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        
         .section { padding: 100px 50px; max-width: 1400px; margin: 0 auto; }
         .section-header { text-align: center; margin-bottom: 80px; }
         .section-header h2 { font-family: 'Crimson Text', serif; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--text-dark); margin-bottom: 20px; font-style: italic; }
         .section-header p { font-size: 1.1rem; color: var(--text-medium); max-width: 600px; margin: 0 auto; }
+        
+        .filter-bar { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap; }
+        .filter-btn { padding: 12px 30px; background: #fff; border: 2px solid var(--light-brown); border-radius: 50px; color: var(--text-medium); font-weight: 500; cursor: pointer; transition: all 0.3s; font-size: 0.95rem; }
+        .filter-btn:hover, .filter-btn.active { background: var(--primary-brown); color: var(--cream); border-color: var(--primary-brown); }
+        
         .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         .product-card { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 8px 30px rgba(61, 41, 23, 0.1); transition: all 0.4s ease; border: 3px solid #e8d5c4; position: relative; opacity: 0; transform: translateY(30px); }
         .product-card.visible { animation: fadeInUp 0.6s ease-out forwards; }
         .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(61, 41, 23, 0.2); border-color: var(--light-brown); }
+        .product-card.hidden { display: none; }
         .product-badge { position: absolute; top: 20px; right: 20px; background: var(--primary-brown); color: var(--cream); padding: 8px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; z-index: 10; transform: rotate(5deg); }
         .product-image { height: 280px; background: linear-gradient(135deg, var(--light-brown) 0%, #c68642 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; cursor: pointer; }
         .product-icon { font-size: 6rem; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2)); }
@@ -79,11 +91,14 @@
         .product-name { font-family: 'Crimson Text', serif; font-size: 1.8rem; color: var(--text-dark); margin-bottom: 15px; font-weight: 600; cursor: pointer; }
         .product-origin { font-size: 0.9rem; color: var(--primary-brown); margin-bottom: 15px; font-style: italic; }
         .product-desc { font-size: 0.95rem; color: var(--text-medium); margin-bottom: 25px; line-height: 1.7; }
+        .product-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+        .product-tag { font-size: 0.8rem; padding: 4px 12px; background: rgba(139, 90, 43, 0.1); color: var(--primary-brown); border-radius: 15px; }
         .product-footer { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
         .product-price { font-size: 1.6rem; color: var(--primary-brown); font-weight: 700; }
         .product-price span { font-size: 0.9rem; color: var(--text-medium); font-weight: 400; }
-        .btn-add-cart { padding: 10px 25px; background: var(--primary-brown); color: var(--cream); border: none; border-radius: 50px; font-weight: 500; cursor: pointer; transition: all 0.3s; font-size: 0.9rem; }
-        .btn-add-cart:hover { background: var(--dark-brown); transform: scale(1.05); }
+        .btn-view-product { padding: 10px 25px; background: var(--primary-brown); color: var(--cream); border: none; border-radius: 50px; font-weight: 500; cursor: pointer; transition: all 0.3s; font-size: 0.9rem; text-decoration: none; display: inline-block; }
+        .btn-view-product:hover { background: var(--dark-brown); transform: scale(1.05); }
+        
         .features-section { background: linear-gradient(135deg, var(--primary-brown) 0%, var(--dark-brown) 100%); color: var(--cream); padding: 100px 50px; position: relative; }
         .features-section .section-header h2, .features-section .section-header p { color: var(--cream); }
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; position: relative; z-index: 1; }
@@ -92,12 +107,26 @@
         .feature-icon { font-size: 4rem; margin-bottom: 20px; display: inline-block; }
         .feature-item h3 { font-family: 'Crimson Text', serif; font-size: 1.6rem; margin-bottom: 15px; color: var(--cream); }
         .feature-item p { color: #e8d5c4; line-height: 1.7; }
+        
+        .testimonials-section { background: #fff; padding: 100px 50px; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .testimonial-card { background: var(--cream); padding: 35px; border-radius: 20px; border: 3px solid #e8d5c4; position: relative; transition: all 0.3s; }
+        .testimonial-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(61, 41, 23, 0.15); }
+        .testimonial-quote { font-size: 3rem; color: var(--light-brown); line-height: 0; margin-bottom: 20px; }
+        .testimonial-text { font-size: 1rem; color: var(--text-medium); line-height: 1.8; margin-bottom: 25px; font-style: italic; }
+        .testimonial-author { display: flex; align-items: center; gap: 15px; }
+        .author-avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--light-brown); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .author-info h4 { font-size: 1rem; color: var(--text-dark); margin-bottom: 3px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-medium); }
+        .testimonial-rating { color: #f39c12; margin-bottom: 15px; }
+        
         .story-section { background: #fff; padding: 100px 50px; }
         .story-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
         .story-image { position: relative; height: 500px; background: linear-gradient(135deg, var(--light-brown) 0%, var(--primary-brown) 100%); border-radius: 30px; overflow: hidden; box-shadow: 20px 20px 0 #e8d5c4, 0 10px 40px rgba(61, 41, 23, 0.2); }
         .story-image::before { content: '🌱'; position: absolute; font-size: 15rem; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.2; }
         .story-text h2 { font-family: 'Crimson Text', serif; font-size: 3rem; color: var(--text-dark); margin-bottom: 30px; line-height: 1.2; }
         .story-text p { font-size: 1.1rem; color: var(--text-medium); margin-bottom: 25px; line-height: 1.8; }
+        
         .newsletter-section { background: var(--cream); padding: 80px 50px; border-top: 3px dashed var(--light-brown); }
         .newsletter-content { max-width: 800px; margin: 0 auto; text-align: center; }
         .newsletter-content h2 { font-family: 'Crimson Text', serif; font-size: 2.5rem; color: var(--text-dark); margin-bottom: 20px; }
@@ -105,46 +134,57 @@
         .newsletter-form { display: flex; gap: 15px; max-width: 500px; margin: 0 auto; }
         .newsletter-form input { flex: 1; padding: 15px 25px; border: 2px solid var(--light-brown); border-radius: 50px; font-size: 1rem; background: #fff; color: var(--text-dark); font-family: 'DM Sans', sans-serif; }
         .newsletter-form button { padding: 15px 35px; background: var(--primary-brown); color: var(--cream); border: none; border-radius: 50px; font-weight: 500; cursor: pointer; transition: all 0.3s; font-size: 1rem; }
+        .newsletter-form button:hover { background: var(--dark-brown); }
+        
         .cta-section { background: var(--cream); padding: 120px 50px; text-align: center; border-top: 3px dashed var(--light-brown); border-bottom: 3px dashed var(--light-brown); }
         .cta-section h2 { font-family: 'Crimson Text', serif; font-size: 3.5rem; color: var(--text-dark); margin-bottom: 30px; }
         .cta-section p { font-size: 1.2rem; color: var(--text-medium); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        
         footer { background: var(--text-dark); color: #e8d5c4; padding: 80px 50px 40px; }
         .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 50px; }
         .footer-brand h3 { font-family: 'Crimson Text', serif; font-size: 2.5rem; color: var(--light-brown); margin-bottom: 20px; font-style: italic; }
         .footer-brand p { line-height: 1.8; color: #c4b5a0; margin-bottom: 20px; }
         .social-links { display: flex; gap: 15px; margin-top: 20px; }
         .social-link { width: 40px; height: 40px; border-radius: 50%; background: rgba(212, 165, 116, 0.2); display: flex; align-items: center; justify-content: center; color: var(--light-brown); text-decoration: none; transition: all 0.3s; font-size: 1.2rem; }
+        .social-link:hover { background: var(--light-brown); color: var(--text-dark); transform: translateY(-3px); }
         .footer-section h4 { font-family: 'Crimson Text', serif; font-size: 1.3rem; margin-bottom: 20px; color: var(--light-brown); }
         .footer-section ul { list-style: none; }
         .footer-section ul li { margin-bottom: 12px; }
         .footer-section a { color: #c4b5a0; text-decoration: none; transition: color 0.3s; }
+        .footer-section a:hover { color: var(--light-brown); }
         .footer-bottom { text-align: center; padding-top: 40px; border-top: 1px solid rgba(212, 165, 116, 0.2); color: #8b7355; }
-        .cart-notification { position: fixed; bottom: 30px; right: 30px; background: var(--primary-brown); color: var(--cream); padding: 20px 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(61, 41, 23, 0.3); z-index: 1000; display: none; }
-        .cart-notification.show { display: block; animation: slideInRight 0.5s ease-out; }
-        @keyframes slideInRight { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); cursor: pointer; z-index: 1000; transition: all 0.3s; text-decoration: none; }
+        .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6); }
+        
         @media (max-width: 968px) {
             nav { padding: 20px 30px; }
             .nav-menu { display: none; }
             .mobile-menu-btn { display: block; }
             .hero { padding: 100px 30px 60px; }
             .hero-content { grid-template-columns: 1fr; gap: 60px; }
+            .hero-visual { height: 400px; }
             .section { padding: 80px 30px; }
+            .filter-bar { gap: 10px; }
+            .filter-btn { padding: 10px 20px; font-size: 0.85rem; }
             .products-grid { grid-template-columns: 1fr; }
             .story-content { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: 1fr; }
             .newsletter-form { flex-direction: column; }
+            .cta-section h2 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
     <nav id="navbar">
-        <div class="nav-logo" onclick="window.location.href='#'">DuniaKopi</div>
+        <a href="index.html" class="nav-logo">DuniaKopi</a>
         <ul class="nav-menu">
             <li><a href="#products">Produk</a></li>
             <li><a href="#story">Cerita Kami</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a href="contact.html">Kontak</a></li>
-            <li><a href="#" class="nav-cta" onclick="alert('Fitur belanja akan segera hadir!'); return false;">🛒 Keranjang <span id="cartBadge" class="cart-badge">0</span></a></li>
+            <li><a href="#" class="nav-cta" onclick="goToMainWebsite()">🛒 Belanja Sekarang</a></li>
         </ul>
         <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
     </nav>
@@ -155,6 +195,7 @@
             <li><a href="#story" onclick="toggleMobileMenu()">Cerita Kami</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a href="contact.html">Kontak</a></li>
+            <li><a href="#" onclick="goToMainWebsite()">🛒 Belanja Sekarang</a></li>
         </ul>
     </div>
 
@@ -162,7 +203,7 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1>Setiap Tegukan,<br><span>Cerita dari Nusantara</span></h1>
-                <p>Nikmati kehangatan kopi pilihan dari pegunungan Indonesia. Dipilih dengan hati, diseduh dengan cinta.</p>
+                <p>Nikmati kehangatan kopi pilihan dari pegunungan Indonesia. Dipilih dengan hati, diseduh dengan cinta. 100% organik, fair trade, freshly roasted.</p>
                 <div class="hero-buttons">
                     <a href="#products" class="btn btn-primary">Lihat Koleksi</a>
                     <a href="#story" class="btn btn-secondary">Cerita Kami</a>
@@ -189,8 +230,16 @@
             <h2>Koleksi Spesial Kami</h2>
             <p>Biji kopi pilihan yang diolah dengan penuh dedikasi, langsung dari petani lokal terpercaya</p>
         </div>
+        
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="arabika">Arabika</button>
+            <button class="filter-btn" data-filter="robusta">Robusta</button>
+            <button class="filter-btn" data-filter="blend">Blend</button>
+        </div>
+        
         <div class="products-grid">
-            <div class="product-card">
+            <div class="product-card" data-category="arabika">
                 <div class="product-badge">Favorit</div>
                 <div class="product-image">
                     <div class="product-icon">☕</div>
@@ -198,15 +247,20 @@
                 <div class="product-info">
                     <h3 class="product-name">Arabika Gayo</h3>
                     <p class="product-origin">📍 Aceh, Sumatera</p>
+                    <div class="product-tags">
+                        <span class="product-tag">Organik</span>
+                        <span class="product-tag">Floral</span>
+                        <span class="product-tag">Medium Roast</span>
+                    </div>
                     <p class="product-desc">Rasa floral dengan sentuhan fruity yang lembut. Keasaman seimbang, perfect untuk pour over di pagi hari.</p>
                     <div class="product-footer">
                         <div class="product-price">Rp 85.000 <span>/250g</span></div>
-                        <button class="btn-add-cart" onclick="addToCart('Arabika Gayo', 85000)">Tambah</button>
+                        <a href="#" class="btn-view-product" onclick="goToMainWebsite('arabika-gayo')">Lihat Detail</a>
                     </div>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-category="robusta">
                 <div class="product-badge">Bold</div>
                 <div class="product-image">
                     <div class="product-icon">☕</div>
@@ -214,15 +268,20 @@
                 <div class="product-info">
                     <h3 class="product-name">Robusta Toraja</h3>
                     <p class="product-origin">📍 Sulawesi</p>
+                    <div class="product-tags">
+                        <span class="product-tag">Strong</span>
+                        <span class="product-tag">Earthy</span>
+                        <span class="product-tag">Dark Roast</span>
+                    </div>
                     <p class="product-desc">Karakter kuat dengan notes earthy. Intensitas tinggi yang cocok untuk espresso dan pecinta kopi bold.</p>
                     <div class="product-footer">
                         <div class="product-price">Rp 75.000 <span>/250g</span></div>
-                        <button class="btn-add-cart" onclick="addToCart('Robusta Toraja', 75000)">Tambah</button>
+                        <a href="#" class="btn-view-product" onclick="goToMainWebsite('robusta-toraja')">Lihat Detail</a>
                     </div>
                 </div>
             </div>
 
-            <div class="product-card">
+            <div class="product-card" data-category="blend">
                 <div class="product-badge">Signature</div>
                 <div class="product-image">
                     <div class="product-icon">☕</div>
@@ -230,10 +289,78 @@
                 <div class="product-info">
                     <h3 class="product-name">Blend Nusantara</h3>
                     <p class="product-origin">📍 Multi-Origin</p>
+                    <div class="product-tags">
+                        <span class="product-tag">Balanced</span>
+                        <span class="product-tag">Versatile</span>
+                        <span class="product-tag">Medium Roast</span>
+                    </div>
                     <p class="product-desc">Perpaduan harmonis arabika dan robusta. Kompleksitas rasa yang seimbang untuk semua jenis seduhan.</p>
                     <div class="product-footer">
                         <div class="product-price">Rp 80.000 <span>/250g</span></div>
-                        <button class="btn-add-cart" onclick="addToCart('Blend Nusantara', 80000)">Tambah</button>
+                        <a href="#" class="btn-view-product" onclick="goToMainWebsite('blend-nusantara')">Lihat Detail</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="arabika">
+                <div class="product-badge">Premium</div>
+                <div class="product-image">
+                    <div class="product-icon">☕</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Arabika Kintamani</h3>
+                    <p class="product-origin">📍 Bali</p>
+                    <div class="product-tags">
+                        <span class="product-tag">Citrus</span>
+                        <span class="product-tag">Bright</span>
+                        <span class="product-tag">Light Roast</span>
+                    </div>
+                    <p class="product-desc">Keasaman cerah dengan notes jeruk segar. Body ringan dengan aftertaste manis yang menyenangkan.</p>
+                    <div class="product-footer">
+                        <div class="product-price">Rp 90.000 <span>/250g</span></div>
+                        <a href="#" class="btn-view-product" onclick="goToMainWebsite('arabika-kintamani')">Lihat Detail</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="robusta">
+                <div class="product-badge">Strong</div>
+                <div class="product-image">
+                    <div class="product-icon">☕</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Robusta Lampung</h3>
+                    <p class="product-origin">📍 Lampung, Sumatera</p>
+                    <div class="product-tags">
+                        <span class="product-tag">Bold</span>
+                        <span class="product-tag">Chocolaty</span>
+                        <span class="product-tag">Dark Roast</span>
+                    </div>
+                    <p class="product-desc">Full body dengan sentuhan cokelat pahit. Perfect untuk kopi susu atau cappuccino di sore hari.</p>
+                    <div class="product-footer">
+                        <div class="product-price">Rp 70.000 <span>/250g</span></div>
+                        <a href="#" class="btn-view-product" onclick="goToMainWebsite('robusta-lampung')">Lihat Detail</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="arabika">
+                <div class="product-badge">Exotic</div>
+                <div class="product-image">
+                    <div class="product-icon">☕</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Arabika Wamena</h3>
+                    <p class="product-origin">📍 Papua</p>
+                    <div class="product-tags">
+                        <span class="product-tag">Rare</span>
+                        <span class="product-tag">Complex</span>
+                        <span class="product-tag">Medium Roast</span>
+                    </div>
+                    <p class="product-desc">Kopi langka dari dataran tinggi Papua. Rasa unik dengan notes buah-buahan tropis dan rempah.</p>
+                    <div class="product-footer">
+                        <div class="product-price">Rp 95.000 <span>/250g</span></div>
+                        <a href="#" class="btn-view-product" onclick="goToMainWebsite('arabika-wamena')">Lihat Detail</a>
                     </div>
                 </div>
             </div>
@@ -269,6 +396,53 @@
         </div>
     </section>
 
+    <section class="testimonials-section">
+        <div class="section-header">
+            <h2>Kata Mereka Tentang Kami</h2>
+            <p>Ribuan pelanggan puas telah mempercayai DuniaKopi</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">Kopi terenak yang pernah saya coba! Arabika Gayo-nya benar-benar fresh dan aromanya menggoda. Setiap pagi jadi lebih semangat.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👨</div>
+                    <div class="author-info">
+                        <h4>Budi Santoso</h4>
+                        <p>Jakarta</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">Sudah langganan 6 bulan dan tidak pernah kecewa. Packaging rapi, pengiriman cepat, dan yang paling penting kopinya selalu fresh roasted!</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👩</div>
+                    <div class="author-info">
+                        <h4>Dewi Lestari</h4>
+                        <p>Bandung</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"</div>
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">Sebagai coffee enthusiast, saya sangat puas dengan kualitas biji kopinya. Single origin-nya benar-benar memiliki karakter yang unik!</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👨</div>
+                    <div class="author-info">
+                        <h4>Andi Wijaya</h4>
+                        <p>Surabaya</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="story-section" id="story">
         <div class="story-content">
             <div class="story-image"></div>
@@ -276,8 +450,8 @@
                 <h2>Cerita di Balik Setiap Biji</h2>
                 <p>DuniaKopi lahir dari kecintaan terhadap warisan kopi Nusantara. Kami percaya bahwa setiap cangkir kopi membawa cerita dari tangan-tangan petani yang merawatnya dengan penuh dedikasi.</p>
                 <p>Dari pegunungan Gayo hingga dataran tinggi Toraja, kami memilih biji kopi terbaik dengan proses yang teliti. Setiap tahap dilakukan dengan hati-hati untuk memastikan Anda mendapatkan pengalaman ngopi yang tak terlupakan.</p>
-                <p>Bergabunglah dengan ribuan pecinta kopi yang sudah mempercayai kami sebagai bagian dari ritual pagi mereka.</p>
-                <a href="#" class="btn btn-primary" onclick="alert('Cerita lengkap akan segera hadir!'); return false;">Baca Cerita Lengkap</a>
+                <p>Bergabunglah dengan ribuan pecinta kopi yang sudah mempercayai kami sebagai bagian dari ritual pagi mereka. Kami tidak hanya menjual kopi, tapi berbagi cerita dan kehangatan dari setiap sudut Indonesia.</p>
+                <a href="blog.html" class="btn btn-primary">Baca Cerita Lengkap</a>
             </div>
         </div>
     </section>
@@ -295,8 +469,8 @@
 
     <section class="cta-section">
         <h2>Siap untuk Pengalaman Kopi Terbaik?</h2>
-        <p>Mulai hari Anda dengan secangkir kehangatan dari DuniaKopi</p>
-        <a href="#products" class="btn btn-primary">Pesan Sekarang</a>
+        <p>Mulai hari Anda dengan secangkir kehangatan dari DuniaKopi. Pesan sekarang dan rasakan perbedaannya!</p>
+        <a href="#" class="btn btn-primary" onclick="goToMainWebsite()">Belanja Sekarang</a>
     </section>
 
     <footer id="contact">
@@ -306,8 +480,8 @@
                 <p>Menghadirkan kehangatan kopi Nusantara ke cangkir Anda. Dipilih dengan hati, diseduh dengan cinta.</p>
                 <div class="social-links">
                     <a href="#" class="social-link" onclick="alert('Instagram: @duniakopi'); return false;">📱</a>
-                    <a href="#" class="social-link" onclick="alert('WhatsApp: +62 812-3456-7890'); return false;">💬</a>
-                    <a href="#" class="social-link" onclick="alert('Email: hello@duniakopi.id'); return false;">📧</a>
+                    <a href="https://wa.me/6281234567890" class="social-link" target="_blank">💬</a>
+                    <a href="mailto:hello@duniakopi.id" class="social-link">📧</a>
                     <a href="#" class="social-link" onclick="alert('Facebook: DuniaKopi'); return false;">👍</a>
                 </div>
             </div>
@@ -317,15 +491,15 @@
                     <li><a href="#products">Produk</a></li>
                     <li><a href="#story">Cerita Kami</a></li>
                     <li><a href="blog.html">Blog Kopi</a></li>
-                    <li><a href="#" onclick="alert('Panduan brewing akan segera hadir!'); return false;">Cara Seduh</a></li>
+                    <li><a href="blog.html">Cara Seduh</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>Bantuan</h4>
                 <ul>
                     <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="#" onclick="alert('Info: Pengiriman 2-5 hari kerja'); return false;">Pengiriman</a></li>
-                    <li><a href="#" onclick="alert('Garansi 100% uang kembali dalam 7 hari'); return false;">Pengembalian</a></li>
+                    <li><a href="faq.html">Pengiriman</a></li>
+                    <li><a href="faq.html">Pengembalian</a></li>
                     <li><a href="contact.html">Kontak</a></li>
                 </ul>
             </div>
@@ -333,9 +507,9 @@
                 <h4>Informasi</h4>
                 <ul>
                     <li><a href="#story">Tentang Kami</a></li>
-                    <li><a href="#" onclick="alert('Kami bekerja dengan 50+ petani kopi lokal'); return false;">Petani Mitra</a></li>
-                    <li><a href="#" onclick="alert('Kami menghormati privasi Anda'); return false;">Kebijakan Privasi</a></li>
-                    <li><a href="#" onclick="alert('Syarat & ketentuan berlaku'); return false;">Syarat & Ketentuan</a></li>
+                    <li><a href="#story">Petani Mitra</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
                 </ul>
             </div>
         </div>
@@ -344,14 +518,10 @@
         </div>
     </footer>
 
-    <div class="cart-notification" id="cartNotification">
-        <strong>✓ Berhasil ditambahkan!</strong>
-        <p id="cartMessage"></p>
-    </div>
+    <a href="https://wa.me/6281234567890" class="whatsapp-float" target="_blank" title="Chat WhatsApp">💬</a>
 
     <script>
-        let cart = [];
-
+        // Scroll navbar effect
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -361,11 +531,22 @@
             }
         });
 
+        // Mobile menu toggle
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             mobileMenu.classList.toggle('active');
         }
 
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
@@ -379,6 +560,7 @@
             });
         });
 
+        // Intersection Observer for animations
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -392,38 +574,61 @@
             observer.observe(el);
         });
 
-        function addToCart(productName, price) {
-            cart.push({ name: productName, price: price });
-            const notification = document.getElementById('cartNotification');
-            const message = document.getElementById('cartMessage');
-            message.textContent = `${productName} telah ditambahkan ke keranjang`;
-            notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-            updateCartBadge();
-        }
+        // Product filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
 
-        function updateCartBadge() {
-            const badge = document.getElementById('cartBadge');
-            badge.textContent = cart.length;
-            badge.style.display = cart.length > 0 ? 'flex' : 'none';
-        }
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
 
+                const filterValue = button.getAttribute('data-filter');
+
+                productCards.forEach(card => {
+                    if (filterValue === 'all') {
+                        card.classList.remove('hidden');
+                        setTimeout(() => card.classList.add('visible'), 10);
+                    } else {
+                        const category = card.getAttribute('data-category');
+                        if (category === filterValue) {
+                            card.classList.remove('hidden');
+                            setTimeout(() => card.classList.add('visible'), 10);
+                        } else {
+                            card.classList.add('hidden');
+                            card.classList.remove('visible');
+                        }
+                    }
+                });
+            });
+        });
+
+        // Newsletter subscription
         function handleNewsletter(event) {
             event.preventDefault();
             const email = event.target.querySelector('input').value;
-            alert(`Terima kasih! Email ${email} telah berhasil didaftarkan untuk newsletter kami. 📧`);
+            alert(`✅ Terima kasih! Email ${email} telah berhasil didaftarkan untuk newsletter kami. 📧`);
             event.target.reset();
         }
 
-        document.addEventListener('click', (e) => {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-            if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-                mobileMenu.classList.remove('active');
+        // Redirect to main website function
+        function goToMainWebsite(productId = '') {
+            // Ganti URL ini dengan URL website utama Anda
+            const mainWebsiteURL = 'https://shop.duniakopi.id';
+            
+            if (productId) {
+                // Redirect ke halaman produk spesifik
+                window.location.href = `${mainWebsiteURL}/product/${productId}`;
+            } else {
+                // Redirect ke homepage website utama
+                window.location.href = mainWebsiteURL;
             }
-        });
+            
+            // Untuk testing, uncomment alert di bawah dan comment window.location.href
+            // alert(`Mengarahkan ke website utama${productId ? ' untuk produk: ' + productId : ''}...`);
+        }
     </script>
 </body>
 </html>
